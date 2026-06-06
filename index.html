@@ -7,114 +7,149 @@
   <meta name="description" content="Something tail-waggingly awesome is coming soon. Get notified when we launch.">
   <style>
     :root {
+      /* Michigan sunset inspired palette */
+      --deep-blue: #0F2C4A;
+      --navy: #1E3A5F;
       --gold: #D4A017;
-      --gold-light: #E8C670;
-      --text-primary: #2C2520;
-      --text-secondary: #5F564D;
-      --bg: linear-gradient(135deg, #FBF7F0 0%, #F5EDE1 100%);
-      --surface: #FFFBF5;
-      --border: #EDE4D8;
+      --gold-bright: #E8B84A;
+      --gold-light: #F2D070;
+      --bg: #F9F6F0;
+      --surface: #FFFFFF;
+      --text-primary: #0F2C4A;
+      --text-secondary: #4B5563;
+      --border: #E5D9C4;
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      padding: 32px 16px;
+      padding: 0;
       min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, sans-serif;
       background: var(--bg);
       color: var(--text-primary);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    /* Premium top countdown */
+    .countdown {
       display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 1.6;
+      gap: 10px;
+      padding: 10px 20px;
+      background: var(--deep-blue);
+      color: #fff;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 12px -2px rgba(15, 44, 74, 0.3);
     }
 
-    .splash {
-      width: 100%;
-      max-width: 680px;
-      text-align: center;
-      animation: page-enter 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    .countdown-label {
+      opacity: 0.85;
+      font-weight: 500;
     }
 
-    @keyframes page-enter {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .splash { animation: none; }
-      .hero { animation: none !important; }
-    }
-
-    .brand {
-      font-size: 12px;
+    .countdown-value {
       font-weight: 700;
-      letter-spacing: 4px;
+      color: var(--gold-bright);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Brand */
+    .brand {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 28px;
-      opacity: 0.95;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    /* Hero Image - cinematic treatment */
+    .hero-wrapper {
+      position: relative;
+      margin-bottom: 36px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -15px rgba(15, 44, 74, 0.25),
+                  0 10px 25px -10px rgba(15, 44, 74, 0.15);
     }
 
     .hero {
       width: 100%;
-      max-width: 470px;
-      margin: 0 auto 42px;
+      height: auto;
       display: block;
-      border-radius: 22px;
-      border: 12px solid #FFFBF5;
-      box-shadow: 0 30px 70px -18px rgba(44, 37, 32, 0.22),
-                  0 12px 30px -8px rgba(44, 37, 32, 0.14);
-      animation: hero-enter 1s cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
     }
 
-    @keyframes hero-enter {
-      from { opacity: 0; transform: scale(0.96) translateY(12px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
+    /* Content */
+    .content {
+      text-align: center;
     }
 
     .headline {
-      font-size: clamp(2.85rem, 8.5vw, 4.4rem);
+      font-size: clamp(2.6rem, 7.5vw, 3.9rem);
       font-weight: 800;
-      line-height: 1.02;
-      letter-spacing: -0.035em;
-      margin-bottom: 10px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin: 0 0 12px;
+      color: var(--deep-blue);
     }
 
     .tagline {
-      font-size: clamp(1.15rem, 3.1vw, 1.38rem);
+      font-size: clamp(1.1rem, 3.2vw, 1.32rem);
       font-weight: 500;
       color: var(--text-secondary);
-      max-width: 26ch;
-      margin: 0 auto 38px;
+      max-width: 28ch;
+      margin: 0 auto 32px;
+      line-height: 1.5;
     }
 
-    .form-card {
+    /* Signup form - premium styling */
+    .signup {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px 28px 32px;
-      margin-bottom: 52px;
-      box-shadow: 0 10px 35px -12px rgba(44, 37, 32, 0.09);
+      border-radius: 16px;
+      padding: 28px 26px 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px -10px rgba(15, 44, 74, 0.08);
     }
 
-    .form-label {
+    .signup-label {
       display: block;
       font-size: 0.95rem;
       font-weight: 600;
+      color: var(--deep-blue);
       margin-bottom: 12px;
+      text-align: left;
     }
 
-    .form-row {
+    .form {
       display: flex;
       gap: 10px;
       flex-direction: column;
     }
 
     @media (min-width: 480px) {
-      .form-row { flex-direction: row; }
+      .form {
+        flex-direction: row;
+      }
     }
 
     .email-input {
@@ -124,161 +159,252 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       background: #FFFBF5;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      color: var(--text-primary);
+      transition: all 0.2s ease;
     }
 
     .email-input:focus {
       outline: none;
       border-color: var(--gold);
-      box-shadow: 0 0 0 4px rgba(212, 160, 23, 0.13);
+      box-shadow: 0 0 0 4px rgba(212, 160, 23, 0.12);
+    }
+
+    .email-input::placeholder {
+      color: #A89F92;
     }
 
     .submit-btn {
-      padding: 15px 32px;
+      padding: 15px 28px;
       font-size: 1rem;
       font-weight: 700;
       background: var(--gold);
-      color: #2C2520;
+      color: #0F2C4A;
       border: none;
       border-radius: 12px;
       cursor: pointer;
       white-space: nowrap;
-      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 4px 14px -2px rgba(212, 160, 23, 0.4);
+      transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 4px 14px -2px rgba(212, 160, 23, 0.35);
+      font-family: inherit;
     }
 
     .submit-btn:hover {
-      background: var(--gold-light);
+      background: var(--gold-bright);
       transform: translateY(-1px);
+      box-shadow: 0 6px 18px -2px rgba(212, 160, 23, 0.4);
     }
 
-    .submit-btn:active { transform: translateY(0); }
+    .submit-btn:active {
+      transform: translateY(0);
+    }
 
+    /* Success state */
     .success {
       display: none;
+      text-align: center;
       padding: 8px 0;
     }
 
-    .success.visible { display: block; }
+    .success.visible {
+      display: block;
+    }
 
-    .success-inner {
+    .success-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .success-check {
-      font-size: 42px;
+    .success-icon {
+      font-size: 38px;
       line-height: 1;
-      margin-bottom: 2px;
     }
 
     .success-title {
       font-size: 1.1rem;
       font-weight: 700;
+      color: var(--deep-blue);
     }
 
     .success-subtitle {
       font-size: 0.9rem;
       color: var(--text-secondary);
-      max-width: 28ch;
+      max-width: 26ch;
     }
 
     .disclaimer {
-      margin-top: 14px;
       font-size: 0.78rem;
-      color: #A89F92;
+      color: #8B7D6B;
+      margin-top: 14px;
+      text-align: center;
     }
 
+    /* Clean footer */
     .footer {
-      font-size: 0.78rem;
-      color: #A89F92;
+      font-size: 0.8rem;
+      color: #8B7D6B;
+      text-align: center;
+      padding-top: 12px;
     }
 
     .footer-links {
-      margin-top: 6px;
       display: flex;
-      gap: 16px;
+      gap: 18px;
       justify-content: center;
+      margin-top: 8px;
       flex-wrap: wrap;
     }
 
     .footer-links a {
-      color: inherit;
+      color: #8B7D6B;
       text-decoration: none;
+      transition: color 0.2s ease;
     }
 
-    .footer-links a:hover { color: var(--gold); }
+    .footer-links a:hover {
+      color: var(--deep-blue);
+    }
 
+    /* Mobile optimizations */
     @media (max-width: 480px) {
-      .hero { max-width: 300px; border-width: 8px; }
-      .form-card { padding: 22px 20px 26px; }
+      .page {
+        padding: 24px 16px 40px;
+      }
+      
+      .countdown {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+        margin-bottom: 24px;
+      }
+      
+      .headline {
+        font-size: 2.35rem;
+      }
+      
+      .signup {
+        padding: 22px 20px 26px;
+      }
+      
+      .hero-wrapper {
+        margin-bottom: 28px;
+        border-radius: 12px;
+      }
+    }
+
+    /* Subtle entrance animation */
+    .page > * {
+      animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    
+    .hero-wrapper { animation-delay: 80ms; }
+    .headline { animation-delay: 160ms; }
+    .tagline { animation-delay: 220ms; }
+    .signup { animation-delay: 280ms; }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page > * {
+        animation: none !important;
+      }
     }
   </style>
 </head>
 <body>
   <!-- 
-    ============================================
-    PAWSOME COMING SOON SPLASH PAGE
-    ============================================
-    HOW TO CUSTOMIZE (no coding skills needed):
-    1. Search & replace "Pawsome" with your brand name
-    2. Replace the <img src="..."> with your own golden retriever photo (see PROMPT.md for recommendations)
-    3. Update the year and footer links
-    4. (Optional) Change <title> and meta description
-    ============================================
+    ================================================
+    PAWSOME COMING SOON — UPDATED PROFESSIONAL SPLASH
+    ================================================
+    
+    HERO IMAGE (Grok Imagine generated):
+    - A happy golden retriever walking a Michigan beach at sunset
+    - Warm golden hour, soft orange/pink sky, photorealistic
+    - File is saved locally as: hero.jpg (already copied into this folder)
+    
+    TO USE THIS SINGLE-FILE PAGE:
+    1. Make sure hero.jpg is in the same folder as index.html
+    2. Customize "Pawsome" (brand) in a few places
+    3. Change the launch date in the JavaScript below (search for "launchDate")
+    4. Update footer links and copyright year as needed
+    
+    This version features:
+    - Michigan sunset color palette (deep blue + warm gold)
+    - Cinematic Grok-generated hero image
+    - Live countdown timer
+    - Premium typography and spacing
+    - Fully responsive + mobile first
+    - Still 100% single HTML file (embedded CSS + JS)
   -->
 
-  <div class="splash">
+  <div class="page">
+    <!-- Dynamic Countdown -->
+    <div class="countdown" id="countdown-container">
+      <span class="countdown-label">Launching in</span>
+      <span class="countdown-value" id="countdown">—</span>
+    </div>
+
     <!-- Brand -->
     <div class="brand">PAWSOME</div>
 
-    <!-- Hero Image -->
-    <img 
-      src="https://images.pexels.com/photos/204493/pexels-photo-204493.jpeg?auto=compress&cs=tinysrgb&w=900" 
-      alt="A very cute, happy golden retriever with a friendly expression looking directly at the camera" 
-      class="hero"
-      width="900"
-      height="600"
-    >
+    <!-- Cinematic Hero Image -->
+    <div class="hero-wrapper">
+      <img 
+        src="hero.jpg" 
+        alt="A happy golden retriever walking along a Michigan beach at sunset with warm golden hour lighting, gentle waves, and a soft orange and pink sky"
+        class="hero"
+        width="1600"
+        height="900"
+      >
+    </div>
 
-    <!-- Headline -->
-    <h1 class="headline">Coming Soon</h1>
+    <!-- Main Content -->
+    <div class="content">
+      <h1 class="headline">Coming Soon</h1>
+      
+      <p class="tagline">Pawsitively fetching something awesome…</p>
 
-    <!-- Exact tagline -->
-    <p class="tagline">Pawsitively fetching something awesome...</p>
+      <!-- Email Signup -->
+      <div class="signup">
+        <div id="form-view">
+          <label for="email" class="signup-label">Get notified when we launch</label>
+          
+          <form id="notify-form" class="form" novalidate>
+            <input 
+              type="email" 
+              id="email" 
+              class="email-input" 
+              placeholder="you@awesome.com" 
+              required
+              aria-label="Email address for launch notification"
+            >
+            <button type="submit" class="submit-btn">Notify me</button>
+          </form>
+          
+          <p class="disclaimer">No spam. Just a friendly heads-up when we’re live.</p>
+        </div>
 
-    <!-- Email Signup -->
-    <div class="form-card">
-      <div id="form-view">
-        <label for="email" class="form-label">Get notified when we launch</label>
-        
-        <form id="notify-form" class="form-row" novalidate>
-          <input 
-            type="email" 
-            id="email" 
-            class="email-input" 
-            placeholder="you@awesome.com" 
-            required
-          >
-          <button type="submit" class="submit-btn">Notify me</button>
-        </form>
-        
-        <p class="disclaimer">No spam. Just the good stuff and a heads-up when we launch.</p>
-      </div>
-
-      <!-- Success state (shown via JS) -->
-      <div id="success-view" class="success">
-        <div class="success-inner">
-          <div class="success-check">🐾</div>
-          <div class="success-title">You're on the list!</div>
-          <div class="success-subtitle">We'll send you a tail-wagging email the moment we launch.</div>
+        <!-- Success State -->
+        <div id="success-view" class="success">
+          <div class="success-content">
+            <div class="success-icon">🐾</div>
+            <div class="success-title">You’re on the list!</div>
+            <div class="success-subtitle">We’ll send you a note the moment we launch.</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Clean Footer -->
     <footer class="footer">
       <div>© 2026 Pawsome. All rights reserved.</div>
       <div class="footer-links">
@@ -290,21 +416,63 @@
   </div>
 
   <script>
-    // Lightweight placeholder form handler — replace with real API call when ready
+    // ============================================
+    // CONFIGURATION - Easy to edit
+    // ============================================
+    const LAUNCH_DATE = new Date('2026-04-25T00:00:00'); // ← Change this date to your actual launch date
+
+    // Live Countdown Timer
+    function updateCountdown() {
+      const now = new Date();
+      const diff = LAUNCH_DATE - now;
+
+      const container = document.getElementById('countdown-container');
+      const valueEl = document.getElementById('countdown');
+
+      if (diff <= 0) {
+        valueEl.textContent = 'very soon';
+        container.style.background = 'var(--navy)';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+      let text = '';
+      if (days > 0) {
+        text = `${days} day${days !== 1 ? 's' : ''}`;
+        if (hours > 0) text += `, ${hours} hr${hours !== 1 ? 's' : ''}`;
+      } else if (hours > 0) {
+        text = `${hours} hour${hours !== 1 ? 's' : ''}`;
+      } else {
+        text = 'less than an hour';
+      }
+
+      valueEl.textContent = text;
+    }
+
+    // Update countdown immediately and every minute
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+
+    // ============================================
+    // Email Signup Form (placeholder)
+    // ============================================
     const form = document.getElementById('notify-form');
     const formView = document.getElementById('form-view');
     const successView = document.getElementById('success-view');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
       const emailField = document.getElementById('email');
+
       if (!emailField.checkValidity()) {
         emailField.reportValidity();
         return;
       }
 
-      // In production: send emailField.value to your mailing list / backend here
+      // TODO: Replace this with real API call (e.g. Buttondown, ConvertKit, custom endpoint)
       formView.style.transition = 'opacity 0.2s ease';
       formView.style.opacity = '0';
 
@@ -312,6 +480,17 @@
         formView.style.display = 'none';
         successView.classList.add('visible');
       }, 220);
+    });
+
+    // Keyboard accessibility nicety
+    document.addEventListener('keydown', function(e) {
+      if (e.key === '/' && document.activeElement.tagName === 'BODY') {
+        const email = document.getElementById('email');
+        if (email) {
+          e.preventDefault();
+          email.focus();
+        }
+      }
     });
   </script>
 </body>
